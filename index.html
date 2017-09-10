@@ -893,10 +893,12 @@ Queue::bulk(array('SendEmail', 'NotifyUser'), $payload);
 php artisan queue:listen
 php artisan queue:listen connection
 php artisan queue:listen --timeout=60
+php artisan queue:listen --sleep=3
+php artisan queue:listen --tries=3
 // Process only the first job on the queue
 php artisan queue:work
-// Start a queue worker in daemon mode
-php artisan queue:work --daemon
+// Process a single job on the queue
+php artisan queue:work --once
 // Create migration file for failed jobs
 php artisan queue:failed-table
 // Listing failed jobs
@@ -1000,17 +1002,17 @@ View::creator('viewname', function($view){});
 @include('view.name', array('key' => 'value'));
 @lang('messages.name')
 @choice('messages.name', 1);
-@if ( $foo == $bar )
+@if ($foo == $bar)
 @else
-@elseif
-@endif
-@unless
-@endunless
-@for ( $i = 0 ; $i < 100 ; $i++ )
+@elseif ($foo == $bar)
+@endif ($foo == $bar)
+@unless ($foo == $bar)
+@endunless ($foo == $bar)
+@for ($i = 0 ; $i < 100 ; $i++)
 @endfor
-@foreach ( $vars as $var )
+@foreach ($vars as $var)
 @endforeach
-@while
+@while ($foo > $bar)
 @endwhile
 //forelse 4.2 feature
 @forelse($users as $user)
